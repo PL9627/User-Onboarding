@@ -19,6 +19,7 @@ const UserForm = props => {
                 <span className = 'error'>{errors.email}</span>
             ) : null};
             <label htmlFor = 'password'>Password:</label>
+            <Field name = 'password' placeholder = 'Type password here'/>
             {touched.password && errors.password ? (
                 <span className = 'error'>{errors.password}</span>
             ) : null}
@@ -33,5 +34,12 @@ const UserForm = props => {
 };
 
 export default withFormik({
-    
+    mapPropsToValues: props => {
+        return {
+            name: props.name || "",
+            email: props.email || "",
+            password: props.password || "",
+            tos: props.tos || false
+        };
+    }
 })(UserForm);
