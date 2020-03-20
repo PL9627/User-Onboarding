@@ -55,6 +55,10 @@ export default withFormik({
     terms: Yup.boolean().oneOf([true], 'Please agree to the TOS')
   }),
   handleSubmit: (values, formikBag) => {
-      
+      formikBag.props.addUser({
+          ...values, id: Date.now()
+      });
+      formikBag.setStatus('Submitting user form...');
+      formikBag.resetForm();
   }
 })(UserForm);
