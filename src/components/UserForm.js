@@ -41,5 +41,8 @@ export default withFormik({
             password: props.password || "",
             tos: props.tos || false
         };
-    }
+    },
+    validationSchema: Yup.object().shape({
+        name: Yup.string().required('Name is a required field')
+    })
 })(UserForm);
